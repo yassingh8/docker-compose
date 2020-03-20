@@ -32,35 +32,5 @@ services:
       - eureka
       - config
       
-  login-service:
-    image: login_service
-    container_name: login
-    networks:
-      - utils
-    restart: on-failure
-    depends_on:
-      - eureka
-      - config
-      
-  profile-service:
-    image: profile_service
-    container_name: profile
-    networks:
-      - utils
-    restart: on-failure
-    depends_on:
-      - eureka
-      - config
-  
-  dashboard-service:
-    image: dashboard_service
-    container_name: dashboard
-    networks:
-      - utils
-    restart: on-failure
-    depends_on:
-      - eureka
-      - config
-
 networks:
   utils:
