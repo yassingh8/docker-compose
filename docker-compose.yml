@@ -1,0 +1,56 @@
+version: '3'
+services:
+  config:
+    image: config_server 
+    ports:
+      - 8888:8888
+    networks:
+        - utils
+
+  eureka:
+    image: eureka_server
+    depends_on:
+      - config
+    ports:
+      - 8761:8761
+    networks:
+            - utils
+
+  zuul:
+    image: zuul_server
+    depends_on:
+      - eureka
+      - config
+    ports:
+      - 8762:8762
+    networks:
+            - utils
+
+  login:
+    image: login_service
+    depends_on:
+      - eureka
+      - config
+    networks:
+            - utils
+
+  dashboard:
+    image: dashboard_service
+    depends_on:
+      - eureka
+      - config
+    networks:
+            -utils
+
+  profile:
+    image: profile_service
+    depends_on:
+      - eureka
+      - config
+  networks:
+          -utils
+
+networks:
+        default:
+                external:
+                        name: utils
