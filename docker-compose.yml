@@ -57,5 +57,4 @@ services:
       - config
 
 networks:
-  utils:
-    name: utils
+  - utils
