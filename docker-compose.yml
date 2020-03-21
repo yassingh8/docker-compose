@@ -3,9 +3,9 @@ services:
   config:
     image: 10.0.1.11:5000/config_server
     container_name: config
+    restart: on-failure
     networks:
       - utils
-    restart: on-failure
     ports:
       - 8888:8888
   
@@ -16,7 +16,6 @@ services:
       - utils
     ports:
       - 8761:8761
-    restart: on-failure
     depends_on:
       - config
     command: ["/wait-for-it.sh", "localhost:8888", "--", "java","-jar","/app.jar"]
@@ -28,7 +27,6 @@ services:
       - utils
     ports:
       - 8762:8762
-    restart: on-failure
     depends_on:
       - eureka
       - config
