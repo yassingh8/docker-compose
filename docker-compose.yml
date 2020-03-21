@@ -19,7 +19,7 @@ services:
     restart: on-failure
     depends_on:
       - config
-    entrypoint: ./wait-for-it.sh config:8888 -- java -jar /app.jar 
+    entrypoint: /wait-for-it.sh config:8888 -- java -jar /app.jar 
   zuul:
     image: 10.0.1.11:5000/zuul_server
     container_name: zuul
@@ -31,7 +31,7 @@ services:
     depends_on:
       - eureka
       - config
-    entrypoint: ./wait-for-it.sh eureka:8761 -- java -jar /app.jar 
+    entrypoint: /wait-for-it.sh eureka:8761 -- java -jar /app.jar 
     
 networks:
   utils:
