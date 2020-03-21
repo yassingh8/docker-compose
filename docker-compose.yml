@@ -1,7 +1,7 @@
 version: '3'
 services:
   config:
-    image: config_server
+    image: 10.0.1.11:5000/config_server
     container_name: config
     networks:
       - utils
@@ -10,7 +10,7 @@ services:
       - 8888:8888
   
   eureka:
-    image: eureka_server
+    image: 10.0.1.11:5000/eureka_server
     container_name: eureka
     networks:
       - utils
@@ -21,7 +21,7 @@ services:
       - config
       
   zuul:
-    image: zuul_server
+    image: 10.0.1.11:5000/zuul_server
     container_name: zuul
     networks:
       - utils
